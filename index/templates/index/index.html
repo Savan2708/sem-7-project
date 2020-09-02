@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css' %}">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %}"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <title>Index</title>
+    </head>
+    <body>
+        <div align="center">
+            <div class="grid-container">
+                <div class="container">
+                    <img src="{% static 'images/Doctors.gif' %}" alt="..." class="image">
+                    <div class="overlay  overlayLeft">
+                        <div class="text">
+                            <a id = "GFG" href="{% url 'login' %}"><button type="button" class="button a">DOCTOR</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <img src="{% static 'images/Patient.png' %}" alt="..." class="image1">
+                    <div class="overlay overlayRight">
+                        <div class="text">
+                            <a id = "GFG" href="{% url 'home' %}"><button type="button" class="button b">PATIENT</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{% static 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="{% static 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' %}" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %}" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
+<style>
+    .title{
+    font-family: sans-serif;
+    color: #dc2d5e;
+    }
+    body {
+    background: lightblue url("{% static "images/slider2.jpg" %}") no-repeat fixed center;
+    }
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 100px;
+    padding: 200px;
+    padding-left: 350px;
+    }
+    .container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    border: 2px ridge;
+    border-radius: 5px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.60);
+    background-color: rgba(255, 255, 255, 0.70);
+    }
+    .image {
+    display: block;
+    width: 200px;
+    height: 170px;
+    padding-top: 20px;
+    }
+    .image1 {
+    display: block;
+    width: 175px;
+    height: 175px;
+    padding-top: 20px;
+    }
+    .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Verdana;
+    }
+    .overlay {
+    position: absolute;
+    opacity: 0;
+    transition:all .65s ease;
+    background-color: #008cba;
+    }
+    .overlayFade {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    }
+    .container:hover .overlay,.container:hover .overlayFade {
+    opacity: 1;
+    }
+    .overlayLeft {
+    height: 100%;
+    width: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    }
+    .overlayRight {
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    }
+    .container:hover .overlayLeft ,.container:hover .overlayRight{
+    width: 100%;
+    }
+    .container:hover {
+    height: 95%;
+    width: 95%;
+    border: 2px double;
+    border-radius: 25px;
+    }
+    .a {
+    width: 80px;
+    height: 50px;
+    transition: 0.2s;
+    }
+    .a:hover {
+    color: rgba(0, 0, 255, 0.9);
+    background: rgba(0, 0, 200, 0.9);
+    box-shadow: 0px 0px 10px rgba(0, 0, 200, 0.9),0px 0px 40px rgba(0, 0, 200, 0.9),0px 0px 80px rgba(0, 0, 200, 0.9);
+    }
+    .b {
+    width: 80px;
+    height: 50px;
+    transition: 0.2s;
+    }
+    .b:hover {
+    color: rgba(0, 255, 0, 0.9);
+    background: rgba(0, 200, 0, 0.9);
+    box-shadow: 0px 0px 10px rgba(0, 200, 0, 0.9),0px 0px 40px rgba(0, 200, 0, 0.9),0px 0px 80px rgba(0, 200, 0, 0.9);
+    }
+    .button {
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    font-size: 13px;
+    padding: 15px;
+    width: 85px;
+    height: 45px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    }
+    .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    }
+    .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    }
+    .button:hover span {
+    padding-right: 25px;
+    }
+    .button:hover span:after {
+    opacity: 1;
+    right: 0;
+    }
+    #GFG
+    {
+    text-decoration: none;
+    }
+</style>

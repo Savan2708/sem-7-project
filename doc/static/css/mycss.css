@@ -1,0 +1,120 @@
+.title{
+    font-family: sans-serif;
+    color: #dc2d5e;
+}
+body {
+    background: lightblue url("{% static "images/slider2.jpg" %}") no-repeat fixed center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 100px;
+    padding: 200px;
+    padding-left: 350px;
+}
+
+.container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    border: 2px ridge;
+    border-radius: 5px;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.60);
+    background-color: rgba(255, 255, 255, 0.70);
+}
+
+.image {
+    display: block;
+    width: 200px;
+    height: 170px;
+    padding-top: 20px;
+    
+}
+
+.image1 {
+    display: block;
+    width: 175px;
+    height: 175px;
+    padding-top: 20px;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Verdana;
+}
+
+.overlay {
+    position: absolute;
+    opacity: 0;
+    transition:all .65s ease;
+    background-color: #008cba;
+}
+
+.overlayFade {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.container:hover .overlay,.container:hover .overlayFade {
+    opacity: 1;
+}
+
+.overlayLeft {
+    height: 100%;
+    width: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.overlayRight {
+    height: 100%;
+    width: 0;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.container:hover .overlayLeft ,.container:hover .overlayRight{
+    width: 100%;
+}
+
+.container:hover {
+    height: 95%;
+    width: 95%;
+    border: 2px double;
+    border-radius: 25px;
+}
+
+.a {
+    width: 80px;
+    height: 50px;
+    transition: 0.2s;
+}
+
+    .a:hover {
+        color: rgba(0, 0, 255, 0.9);
+        background: rgba(0, 0, 200, 0.9);
+        box-shadow: 0px 0px 10px rgba(0, 0, 200, 0.9),0px 0px 40px rgba(0, 0, 200, 0.9),0px 0px 80px rgba(0, 0, 200, 0.9);
+    }
+
+.b {
+    width: 80px;
+    height: 50px;
+    transition: 0.2s;
+}
+
+    .b:hover {
+        color: rgba(0, 255, 0, 0.9);
+        background: rgba(0, 200, 0, 0.9);
+        box-shadow: 0px 0px 10px rgba(0, 200, 0, 0.9),0px 0px 40px rgba(0, 200, 0, 0.9),0px 0px 80px rgba(0, 200, 0, 0.9);
+    }
+	
