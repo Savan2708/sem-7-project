@@ -19,6 +19,7 @@ from index import views
 from home import views
 from register import views
 from doctors import views
+from clinic import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('register.urls')),
     path('', include('doctors.urls')),
+    path('', include('clinic.urls')),
 ]
 
