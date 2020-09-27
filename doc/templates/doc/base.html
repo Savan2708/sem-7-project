@@ -24,7 +24,7 @@
             <div class="container">
                 <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                     <div class="col-lg-2 pr-4 align-items-center">
-                        <a class="navbar-brand" href="{% url 'home' %}">Doc-<span>Appointment</span></a>
+                        <a class="navbar-brand" href="{% url 'index' %}">Doc-<span>Appointment</span></a>
                     </div>
                 </div>
             </div>
@@ -32,6 +32,8 @@
 
         {% url 'home' as home %}
         {% url 'doctors' as doctors %}
+        {% url 'bookings' as bookings %}
+        {% url 'viewprofile' as viewprofile %}
 
         {% if messages %}
             {% for msg in messages %}
@@ -40,6 +42,7 @@
                 </div>
             {% endfor %}
         {% endif %}
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container d-flex align-items-center">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,22 +50,25 @@
                 </button>
                 <p class="button-custom order-lg-last mb-0">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="btn btn-secondary py-2 px-3 ml-4">Logout</a>
-                    {% else %}
-                    <a href="appointment.html" class="btn btn-secondary py-2 px-3">Make An Appointment</a>
+
+                    <a href="{% url 'userprofile' %}" class="btn btn-secondary">Register</a>
+
+                    <a href="{% url 'logout' %}" class="btn btn-secondary ml-4">Logout</a>
+
                     {% endif %}
                 </p>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item {% if request.path == home %} active {% endif %}"><a href="{% url 'home' %}" class="nav-link pl-0">Home</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a href="{% url 'doctors' %}" class="nav-link">Profile</a></li>
+                        <li class="nav-item {% if request.path == viewprofile %} active {% endif %}"><a href="{% url 'viewprofile' %}" class="nav-link">Profile</a></li>
+                        <li class="nav-item {% if request.path == bookings %} active {% endif %}"><a href="{% url 'bookings' %}" class="nav-link">Bookings</a></li>
                         {% else %}
                         <li class="nav-item {% if request.path == doctors %} active {% endif %}"><a href="{% url 'doctors' %}" class="nav-link">Doctor</a></li>
-                        <li class="nav-item"><a href="department.html" class="nav-link">Departments</a></li>
+
                         {% endif %}
-                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+
+
                     </ul>
                 </div>
             </div>
@@ -72,12 +78,12 @@
         {% endblock %}
         <footer class="ftco-footer ftco-bg-dark ftco-section">
             <div class="container">
-                <div class="row mb-5">
+                <div class="row">
                     <div class="col-md">
-                        <div class="ftco-footer-widget mb-5">
+                        <div class="ftco-footer-widget">
                             <h2 class="ftco-heading-2 logo">Doc-<span>Appointment</span></h2>
                         </div>
-                        <div class="ftco-footer-widget mb-5">
+                        <div class="ftco-footer-widget">
                             <h2 class="ftco-heading-2">Have a Questions?</h2>
                             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -87,19 +93,35 @@
                         </div>
                     </div>
                     <div class="col-md">
-                        <div class="ftco-footer-widget mb-5 ml-md-4">
+                        <div class="ftco-footer-widget ml-md-4">
                             <h2 class="ftco-heading-2">Links</h2>
                             <ul class="list-unstyled">
-                                <li><a href="index.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                                <li><a href="about.html"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
-                                <li><a href="doctor.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Doctor</a></li>
-                                <li><a href="department.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
-                                <li><a href="contact.html"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'home' %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+                    <li><a href="{% url 'viewprofile' %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Profile</a></li>
+                    <li><a href="{% url 'bookings' %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Bookings</a></li>
+                    {% else %}
+                    <li><a href="{% url 'home' %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+                    <li><a href="{% url 'doctors' %}"><span class="ion-ios-arrow-round-forward mr-2"></span>Doctor</a></li>
+                    {% endif %}
+
                             </ul>
                         </div>
+
                     </div>
                     <div class="col-md">
-                        <div class="ftco-footer-widget mb-5">
+                                <div class="ftco-footer-widget ml-md-4">
+              <h2 class="ftco-heading-2">Services</h2>
+              <ul class="list-unstyled">
+                <li style="color: white;"><span class="ion-ios-arrow-round-forward mr-2"></span>Neurolgy</li>
+                <li style="color: white;"><span class="ion-ios-arrow-round-forward mr-2"></span>Dentist</li>
+                <li style="color: white;"><span class="ion-ios-arrow-round-forward mr-2"></span>Ophthalmology</li>
+                <li style="color: white;"><span class="ion-ios-arrow-round-forward mr-2"></span>Cardiology</li>
+                <li style="color: white;"><span class="ion-ios-arrow-round-forward mr-2"></span>Many More</li>
+              </ul>
+                                </div></div>
+                    <div class="col-md">
+                        <div class="ftco-footer-widget">
                             <h2 class="ftco-heading-2">Opening Hours</h2>
                             <h3 class="open-hours pl-4"><span class="ion-ios-time mr-3"></span>We are open 24/7</h3>
                         </div>

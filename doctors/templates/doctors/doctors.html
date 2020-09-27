@@ -2,35 +2,55 @@
 {% block content %}
 {% load static %}
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static "images/bg_1.jpg" %});" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
                         <h1 class="mb-2 bread">Qualified Doctors</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Doctor <i class="ion-ios-arrow-forward"></i></span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Doctor <i class="ion-ios-arrow-forward"></i></span></p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="ftco-section">
-            <div class="container">
-                <div class="col-md-12 col-lg-12 ftco-animate ">
-                    <div style="overflow-x:auto;">
-                        <table width="30px" class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Service</th>
-                                    <th scope="col">Clinic Name</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">Address</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+
+
+<section class="ftco-section">
+
+			<div class="container">
+
+				<div class="row">
+					{% for p in profile.all %}
+					<div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url({{ p.image.url }});"></div>
+							</div>
+							<div class="text pt-3 text-center">
+								<h3>{{ p.fname }} {{ p.lname }} </h3>
+								<span class="position mb-2">{{ p.service }}</span>
+								<div class="faded">
+									<p>{{ p.degree }}  |  {{ p.years }} yrs</p>
+									<p>Working Hours :{{ p.open_time }} - {{ p.close_time }}</p>
+									<p>Break :{{ p.break_start }} - {{ p.break_end }}</p>
+									<ul class="ftco-social text-center">
+		           <a href="{% url 'appointment' p.id %}"> <input type="submit" value="Book Appointment"
+                                                           name="Register" class="btn btn-secondary py-1 px-2" >
+                        </a>
+		              </ul>
+	              </div>
+							</div>
+
+						</div>
+					</div>
+					{% endfor %}
                 </div>
+
             </div>
-        </section>
+
+
+
+		</section>
+
 {% endblock %}

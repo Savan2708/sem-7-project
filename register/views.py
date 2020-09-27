@@ -26,6 +26,7 @@ def login(request):
             return redirect('login')
 
     return render(request, 'register/login.html')
+    #print(request.session)
 
 
 def signup(request):
